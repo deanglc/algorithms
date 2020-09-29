@@ -2,7 +2,7 @@ package _4_tree
 
 type BST struct {
 	*BinaryTree
-	//比对函数，0:v==nodeV,正数:v>nodeV,负数:v<nodeV
+	// 比对函数，0:v==nodeV,正数:v>nodeV,负数:v<nodeV
 	compareFunc func(v, nodeV interface{}) int
 }
 
@@ -19,9 +19,9 @@ func (this *BST) Find(v interface{}) *Node {
 		compareResult := this.compareFunc(v, p.data)
 		if compareResult == 0 {
 			return p
-		} else if compareResult > 0 { //v > nodeV
+		} else if compareResult > 0 { // v > nodeV
 			p = p.right
-		} else { //v < nodeV
+		} else { // v < nodeV
 			p = p.left
 		}
 	}
@@ -70,24 +70,24 @@ func (this *BST) Delete(v interface{}) bool {
 		}
 	}
 
-	if nil == p { //需要删除的节点不存在
+	if nil == p { // 需要删除的节点不存在
 		return false
-	} else if nil == p.left && nil == p.right { //删除的是一个叶子节点
+	} else if nil == p.left && nil == p.right { // 删除的是一个叶子节点
 		if nil != pp {
 			if deleteLeft {
 				pp.left = nil
 			} else {
 				pp.right = nil
 			}
-		} else { //根节点
+		} else { // 根节点
 			this.root = nil
 		}
-	} else if nil != p.right { //删除的是一个有右孩子，不一定有左孩子的节点
-		//找到p节点右孩子的最小节点
+	} else if nil != p.right { // 删除的是一个有右孩子，不一定有左孩子的节点
+		// 找到p节点右孩子的最小节点
 		pq := p
-		q := p.right //向右走一步
+		q := p.right // 向右走一步
 		fromRight := true
-		for nil != q.left { //向左走到底
+		for nil != q.left { // 向左走到底
 			pq = q
 			q = q.left
 			fromRight = false
@@ -99,7 +99,7 @@ func (this *BST) Delete(v interface{}) bool {
 		}
 		q.left = p.left
 		q.right = p.right
-		if nil == pp { //根节点被删除
+		if nil == pp { // 根节点被删除
 			this.root = q
 		} else {
 			if deleteLeft {
@@ -108,7 +108,7 @@ func (this *BST) Delete(v interface{}) bool {
 				pq.right = q
 			}
 		}
-	} else { //删除的是一个只有左孩子的节点
+	} else { // 删除的是一个只有左孩子的节点
 		if nil != pp {
 			if deleteLeft {
 				pp.left = p.left
