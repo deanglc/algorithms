@@ -1,4 +1,4 @@
-package binary_search_tree
+package binary_tree
 
 import (
 	"errors"
@@ -225,7 +225,12 @@ func preorderTraversal(root *TreeNode) []int {
 	return result
 }
 
-// 中序非递归
+/* 中序非递归
+    	1
+  	21  	22
+  31  32  33  34
+中序非递归  [31 21 32 1 33 22 34]
+*/
 func inorderTraversal(root *TreeNode) []int {
 	result := make([]int, 0)
 	if root == nil {
